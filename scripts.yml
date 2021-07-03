@@ -1,0 +1,8 @@
+scripts:
+  test-watch: deno test --watch --allow-net
+  start:
+    pll:
+      - vr run-watch
+      - deno test --watch --allow-net
+
+  run-watch: deployctl run --watch  --no-check main.ts
