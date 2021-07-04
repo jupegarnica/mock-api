@@ -18,7 +18,12 @@ addEventListener("fetch", async (event) => {
 
     if (!body && !headers && !status) {
       const readme = new URL("readme.html", import.meta.url);
-      return event.respondWith(fetch(readme));
+      const response = await fetch(readme);
+      const headers = new Headers(response.headers);
+      headers.set("content-type", "text/html; charset=utf-8");
+      return event.respondWith(
+        new Response(response.body, { ...response, headers }),
+      );
     }
     event.respondWith(
       new Response(body, {
