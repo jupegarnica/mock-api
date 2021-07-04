@@ -7,9 +7,7 @@ addEventListener("fetch", async (event) => {
     const { pathname, searchParams } = new URL(event.request.url);
     const body = searchParams.get("body");
     const _headers = searchParams.get("headers");
-    const headers = _headers ? JSON.parse(_headers) : {
-      "content-type": "text/plain",
-    };
+    const headers = _headers ? JSON.parse(_headers) : undefined;
     const status = searchParams.get("status");
     const _delay = searchParams.get("delay");
     const delay = _delay ? Number(_delay) : 0;
@@ -17,6 +15,12 @@ addEventListener("fetch", async (event) => {
     if (delay) {
       await wait(delay);
     }
+
+    if (!body && !headers && !status) {
+      const readme = new URL("readme.html", import.meta.url);
+      return event.respondWith(fetch(readme));
+    }
+
     event.respondWith(
       new Response(body, {
         status: status ? Number(status) : 200,

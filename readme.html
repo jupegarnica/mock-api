@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Mock API REST</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="mock-api-rest">Mock API REST</h1>
+<p><strong>An API REST to mock any other one.</strong></p>
+<p>Fake a response body, status, headers or delay the response.</p>
+<h2 id="usage">Usage</h2>
+<p>Make an HTTP request and specify the search params status, body, header or delay.
+any pathname or method will be ignored.</p>
+<h3 id="body">Body</h3>
+<p>Specify a search body param to retrieve a response with that body.</p>
+<pre><code class="language-http"><div><span class="hljs-attribute">GET https://mockup-api.deno.dev/?body=hola
+
+
+HTTP/1.1 200 OK
+content-type</span>: text/plain
+<span class="hljs-attribute">content-length</span>: 4
+<span class="hljs-attribute">date</span>: Sun, 04 Jul 2021 15:13:01 GMT
+
+<span class="ebnf"><span class="hljs-attribute">hola</span>
+</span></div></code></pre>
+<h3 id="code-status">Code Status</h3>
+<p>Specify a search status param get back that code status.
+The status must be inside the range 200 to 599.</p>
+<pre><code class="language-http"><div><span class="hljs-attribute">GET https://mockup-api.deno.dev/?status=301
+
+
+HTTP/1.1 301 Moved Permanently
+content-type</span>: text/plain
+<span class="hljs-attribute">content-length</span>: 0
+<span class="hljs-attribute">date</span>: Sun, 04 Jul 2021 15:15:35 GMT
+</div></code></pre>
+<h3 id="headers">Headers</h3>
+<p>Specify a search header param as json string to get them back.</p>
+<pre><code class="language-http"><div><span class="hljs-attribute">GET https://mockup-api.deno.dev/?headers={&quot;x-hello&quot;:&quot;world&quot;}
+
+
+HTTP/1.1 200 OK
+x-hello</span>: world
+<span class="hljs-attribute">content-length</span>: 0
+<span class="hljs-attribute">date</span>: Sun, 04 Jul 2021 15:26:11 GMT
+</div></code></pre>
+<h3 id="delay">Delay</h3>
+<p>Specify a search delay param in milliseconds in order to delay the response.</p>
+<pre><code class="language-http"><div><span class="hljs-attribute">GET https://mockup-api.deno.dev/?delay=1000
+</span></div></code></pre>
+<h2 id="example">Example</h2>
+<p>Here a json response as example.</p>
+<pre><code class="language-http"><div><span class="hljs-attribute">GET https://mockup-api.deno.dev/?body={&quot;a&quot;:1}&amp;headers={&quot;content-type&quot;:&quot;application/json&quot;}
+
+
+HTTP/1.1 200 OK
+content-type</span>: application/json
+<span class="hljs-attribute">content-length</span>: 7
+<span class="hljs-attribute">date</span>: Sun, 04 Jul 2021 15:31:36 GMT
+
+<span class="json">{
+  <span class="hljs-attr">&quot;a&quot;</span>: <span class="hljs-number">1</span>
+}
+</span></div></code></pre>
+
+    </body>
+    </html>
