@@ -20,17 +20,18 @@ addEventListener("fetch", async (event) => {
       const readme = new URL("readme.html", import.meta.url);
       return event.respondWith(fetch(readme));
     }
-
+    const responseHeaders = { "Access-Control-Allow-Origin": "*", ...headers };
     event.respondWith(
       new Response(body, {
         status: status ? Number(status) : 200,
-        headers: headers,
+        headers: responseHeaders,
       }),
     );
   } catch (error) {
     event.respondWith(
       new Response(String(error), {
         status: 500,
+        headers: responseHeaders,
       }),
     );
   }
