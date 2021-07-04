@@ -21,6 +21,19 @@ Deno.test({
     assertEquals(response.headers.get("content-type"), "text/plain");
   },
 });
+
+Deno.test({
+  name: "should fail if the status is out of range [200, 599]",
+  fn: async () => {
+    const response = await fetch("http://localhost:8080?status=601");
+    const body = await response.text();
+    assertEquals(response.status, 500);
+    assertEquals(
+      body,
+      "RangeError: The status provided (601) is outside the range [200, 599].",
+    );
+  },
+});
 Deno.test({
   name: "should respond with headers specified",
   fn: async () => {

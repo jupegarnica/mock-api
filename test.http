@@ -1,1 +1,5 @@
+POST http://localhost:8080/pathname?body=hola
+###
+POST http://localhost:8080/pathname?status=601
+###
 POST http://localhost:8080/pathname?body=hola&status=200&delay=1000
