@@ -1,3 +1,4 @@
 scripts:
   test-watch: deno test --watch --allow-net
   run-watch: deployctl run --watch  --no-check main.ts
+  # one-line: deno run --no-check -A --unstable https://deno.land/x/deploy/deployctl.ts run main.ts
