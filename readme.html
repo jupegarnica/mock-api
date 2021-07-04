@@ -436,6 +436,14 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
       }
     </style>
 
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css"
+    /> -->
     <style>
       body {
         font-family: -apple-system, BlinkMacSystemFont,
@@ -443,7 +451,6 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
           'Droid Sans', sans-serif;
         font-size: 14px;
         line-height: 1.6;
-        padding: 2em;
       }
     </style>
     <style>
@@ -474,7 +481,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
       Specify a search body param to retrieve a response with
       that body.
     </p>
-    <pre><code class="language-http"><div><span class="hljs-attribute">GET https://mockup-api.deno.dev/?body=hola
+    <pre><code class="language-http"><div><span class="hljs-attribute">GET https://mock-api.deno.dev/?body=hola
 
 
 HTTP/1.1 200 OK
@@ -489,7 +496,7 @@ content-type</span>: text/plain
       Specify a search status param get back that code status.
       The status must be inside the range 200 to 599.
     </p>
-    <pre><code class="language-http"><div><span class="hljs-attribute">GET https://mockup-api.deno.dev/?status=301
+    <pre><code class="language-http"><div><span class="hljs-attribute">GET https://mock-api.deno.dev/?status=301
 
 
 HTTP/1.1 301 Moved Permanently
@@ -502,7 +509,7 @@ content-type</span>: text/plain
       Specify a search header param as json string to get them
       back.
     </p>
-    <pre><code class="language-http"><div><span class="hljs-attribute">GET https://mockup-api.deno.dev/?headers={&quot;x-hello&quot;:&quot;world&quot;}
+    <pre><code class="language-http"><div><span class="hljs-attribute">GET https://mock-api.deno.dev/?headers={&quot;x-hello&quot;:&quot;world&quot;}
 
 
 HTTP/1.1 200 OK
@@ -515,11 +522,11 @@ x-hello</span>: world
       Specify a search delay param in milliseconds in order to
       delay the response.
     </p>
-    <pre><code class="language-http"><div><span class="hljs-attribute">GET https://mockup-api.deno.dev/?delay=1000
+    <pre><code class="language-http"><div><span class="hljs-attribute">GET https://mock-api.deno.dev/?delay=1000
 </span></div></code></pre>
     <h2 id="example">Example</h2>
     <p>Here a json response as example.</p>
-    <pre><code class="language-http"><div><span class="hljs-attribute">GET https://mockup-api.deno.dev/?body={&quot;a&quot;:1}&amp;headers={&quot;content-type&quot;:&quot;application/json&quot;}
+    <pre><code class="language-http"><div><span class="hljs-attribute">GET https://mock-api.deno.dev/?body={&quot;a&quot;:1}&amp;headers={&quot;content-type&quot;:&quot;application/json&quot;}
 
 
 HTTP/1.1 200 OK
