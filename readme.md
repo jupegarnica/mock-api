@@ -2,7 +2,9 @@
 
 **An API REST to mock any other one.**
 
-Fake a response body, status, headers or delay the response.
+Http rest api to get fake the response body, status, headers and/or delay the response.
+
+Live at: https://mock-api.deno.dev/
 
 ## Usage
 
