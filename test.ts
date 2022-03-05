@@ -1,20 +1,44 @@
 import { assertEquals } from "https://deno.land/std@0.100.0/testing/asserts.ts";
+import './main.ts';
+const BASE_URL = "http://localhost:8000";
+
 
 Deno.test({
   name: "default response to status 200 and empty text body",
   fn: async () => {
-    const response = await fetch("http://localhost:8080");
+    const response = await fetch(BASE_URL + "/");
     const body = await response.text();
     assertEquals(response.status, 200);
     // assertEquals(body, "");
-    assertEquals(response.headers.get("content-type"), "text/html");
+    assertEquals(response.headers.get("content-type"), "text/html; charset=utf-8");
+  },
+});
+
+
+
+Deno.test({
+  name: "should mirror body and headers on /pong",
+  only: false,
+  fn: async () => {
+    const body = JSON.stringify({a: 1});
+    const response = await fetch(BASE_URL + "/pong", {
+      method: "POST",
+      headers: {
+        'x-test': 'test',
+      },
+      body,
+    });
+    const _body = await response.text();
+    assertEquals(response.status, 200);
+    assertEquals(_body, body);
+    assertEquals(response.headers.get("x-test"), "test");
   },
 });
 
 Deno.test({
   name: "should respond with status specified",
   fn: async () => {
-    const response = await fetch("http://localhost:8080?status=201");
+    const response = await fetch(BASE_URL + "/?status=201");
     const body = await response.text();
     assertEquals(response.status, 201);
     assertEquals(body, "");
@@ -24,7 +48,7 @@ Deno.test({
 Deno.test({
   name: "should fail if the status is out of range [200, 599]",
   fn: async () => {
-    const response = await fetch("http://localhost:8080?status=601");
+    const response = await fetch(BASE_URL + "/?status=601");
     const body = await response.text();
     assertEquals(response.status, 500);
     assertEquals(
@@ -36,7 +60,7 @@ Deno.test({
 Deno.test({
   name: "should respond with headers specified",
   fn: async () => {
-    const response = await fetch("http://localhost:8080?body=hello%20world");
+    const response = await fetch(BASE_URL + "/?body=hello%20world");
     const body = await response.text();
     assertEquals(response.status, 200);
     assertEquals(body, "hello world");
@@ -50,7 +74,7 @@ Deno.test({
   name: "should respond with body specified",
   fn: async () => {
     const response = await fetch(
-      `http://localhost:8080?headers={"x-hello":"world"}`,
+      BASE_URL + `/?headers={"x-hello":"world"}`,
     );
     const body = await response.text();
     assertEquals(response.headers.get("x-hello"), "world");
@@ -61,7 +85,7 @@ Deno.test({
   name: "should respond with json body",
   fn: async () => {
     const response = await fetch(
-      `http://localhost:8080?body={"a":1}&headers={"content-type":"application/json"}`,
+      BASE_URL + `/?body={"a":1}&headers={"content-type":"application/json"}`,
     );
     const body = await response.json();
     assertEquals(response.status, 200);
@@ -76,7 +100,7 @@ Deno.test({
     const delay = 100;
     const start = Date.now();
     const response = await fetch(
-      `http://localhost:8080?delay=${delay}`,
+      BASE_URL + `/?delay=${delay}`,
     );
     const duration = Date.now() - start;
     const body = await response.text();

@@ -1,9 +1,35 @@
- http://localhost:8080?delay=-1
+@host=http://localhost:8000
 ###
-POST http://localhost:8080/pathname?body=hola
+GET /?delay=1000
 ###
-POST http://localhost:8080/pathname?status=601
+POST /pathname?body=hola
 ###
-POST http://localhost:8080/pathname?headers={"x-hello":"world"}
+POST /pathname?status=601
+###
+POST /pathname?headers={"x-hello":"world"}
 ###
 GET https://mockup-api.deno.dev/?body={"a":1}&headers={"content-type":"application/json"}
+
+###
+
+POST /pong?status=601
+x-header: value
+Content-Type: application/json
+
+{"a":1}
+
+
+
+POST /pong?status=201
+X-hello: world
+content-type: text/plain
+
+{"a":1}
+
+HTTP/1.1 201 Created
+X-hello: world
+content-type: text/plain
+content-length: 7
+date: Sun, 04 Jul 2021 15:31:36 GMT
+
+{"a":1}

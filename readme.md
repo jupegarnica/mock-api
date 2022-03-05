@@ -82,3 +82,25 @@ date: Sun, 04 Jul 2021 15:31:36 GMT
   "a": 1
 }
 ```
+
+## /pong
+
+Replay with same body and header as the request
+
+
+```http
+POST https://mock-api.deno.dev/pong?status=201?delay=100?body=ignored
+X-hello: world
+content-type: text/plain
+
+{"a":1}
+
+HTTP/1.1 201 Created
+X-hello: world
+content-type: text/plain
+content-length: 7
+date: Sun, 04 Jul 2021 15:31:36 GMT
+
+{"a":1}
+
+```
